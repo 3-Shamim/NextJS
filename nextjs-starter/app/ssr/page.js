@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from "axios";
+import getAllUsers from "@/app/lib/getAllUsers";
 
 const Page = async () => {
 
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-    const users = res.data;
+    const userReq = getAllUsers();
+    const users = await userReq;
 
     return (
         <div>
