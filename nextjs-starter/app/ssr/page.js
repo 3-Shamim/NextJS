@@ -1,16 +1,32 @@
 import React from 'react';
-import axios from "axios";
-import getAllUsers from "@/app/lib/getAllUsers";
+import getAllUsers from "@/lib/getAllUsers";
+import {cookies} from "next/headers";
+import Link from "next/link";
 
 const Page = async () => {
 
     const userReq = getAllUsers();
     const users = await userReq;
 
+    const authCookies = cookies().get("Auth");
+
     return (
         <div>
             SSR
-
+            <br/>
+            <div>{JSON.stringify(authCookies)}</div>
+            <button>
+                Change cookies
+            </button>
+            <br/>
+            <br/>
+            <Link
+                href="/csr"
+            >
+                CSR
+            </Link>
+            <br/>
+            <br/>
             {
                 users.map(u => (
                     <div key={u.id}>

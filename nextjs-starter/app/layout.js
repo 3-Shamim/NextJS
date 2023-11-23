@@ -1,5 +1,6 @@
 import {Inter} from 'next/font/google'
 import './globals.css'
+import SessionContextProvider from "@/contexts/SessionContextProvider";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -11,7 +12,9 @@ export const metadata = {
 const RootLayout = ({children}) => {
     return (
         <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <SessionContextProvider>
+            <body className={inter.className}>{children}</body>
+        </SessionContextProvider>
         </html>
     )
 }
